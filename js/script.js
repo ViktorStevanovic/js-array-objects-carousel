@@ -29,28 +29,40 @@ const buttonUp = document.querySelector('.btn-up')
 const buttonDown = document.querySelector('.btn-down')
 
 carouselCycleDown();
+const timeSlide = setInterval(carouselCycleDown, 3000);
 
 buttonDown.addEventListener('click',function(){
     carouselCycleDown();
 })
 
-// buttonUp.addEventListener('click',function(){
-//     count = count - 1;
-// })
-
-setInterval(carouselCycleDown, 3000);
+buttonUp.addEventListener('click',function(){
+    carouselCycleUp ()
+    clearInterval(timeSlide)
+})
 
 function carouselCycleDown (){
-    let game = images[count];
+    // let game = images[count];
     imageSection.innerHTML = 
-        `<img src="${game.image}">
-        <h1 class="game-title">${game.title}</h1>
-        <p class="game-desc">${game.text}</p>`;
+        `<img src="${images[count].image}">
+        <h1 class="game-title">${images[count].title}</h1>
+        <p class="game-desc">${images[count].text}</p>`;
+
     count++; 
     if(count === images.length){
         count = 0;
     }
+    console.log(count)
+};  
+function carouselCycleUp (){
+    count--;
+    imageSection.innerHTML = 
+        `<img src="${images[count].image}">
+        <h1 class="game-title">${images[count].title}</h1>
+        <p class="game-desc">${images[count].text}</p>`;
+        if(count == 0){
+            count = 5
+        }
 };  
 
-// })
+
 
